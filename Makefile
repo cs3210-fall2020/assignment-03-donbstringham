@@ -14,6 +14,12 @@ bld.ex01: src/ex01.c
 run.ex01:
 	$(BINDIR)/ex01 $(ARGS)
 
+bld.ex02: src/ex02.c
+	$(CC) src/ex02.c -o $(BINDIR)/ex02
+
+run.ex02:
+	$(BINDIR)/ex02 $(ARGS)
+
 clean:
 	rm -f *.txt
 	rm -f $(BINDIR)
