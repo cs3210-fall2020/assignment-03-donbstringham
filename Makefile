@@ -1,29 +1,20 @@
 # Author: Don Stringham <donstringham@weber.edu>
-.DEFAULT_GOAL=clean
+UNAME_S := $(shell uname -s)
 
-
-# VARIABLES
-CC=gcc
-BUILD_TIME ?= $(shell date +%FT%T%z)
-SDIR=./src
-ODIR=$(SDIR)
-BDIR=./bin
+CC := gcc
+BINDIR := bin
+SRCDIR := src
+OBJDIR := $(SRCDIR)
+SRCS := $(shell find $(SRCDIR) -name *.c)
 
 # TARGETS
-all:
-	-mkdir -p $(BDIR)
-
-bld.ex01: $(SDIR)/ex01.o
-	$(CC) $(CFLAGS) -o $(BDIR)
+bld.ex01: src/ex01.c
+	$(CC) src/ex01.c -o $(BINDIR)/ex01
 
 run.ex01:
-	@echo Running exercise 01...
+	$(BINDIR)/ex01 $(ARGS)
 
-release:
-	git tag v$(V)
-	@read -p "Press enter to confirm and push to origin ..." && git push origin v$(V)
-
-.PHONY: clean
 clean:
-	-rm -r $(BDIR)
-	-rm -f $(ODIR)/*.o
+	rm -f *.txt
+	rm -f $(BINDIR)
+	rm -f $(OBJDIR)
