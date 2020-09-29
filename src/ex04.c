@@ -1,30 +1,28 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define OFFSET 0
+
 int main(int argc, char **argv) {
-    if (argc != 3) {
+    if (argc != 2) {
         printf("[ERROR] insufficient arguments\n");
-        printf("[HELP] <%s> <input file> <output file>\n", argv[0]);
+        printf("[HELP] <%s> <input file>\n", argv[0]);
         exit(-1);
     }
 
     FILE *fpin;
-    FILE *fpout;
 
     printf("[INFO] input file: %s\n", argv[1]);
-    printf("[INFO] output file: %s\n", argv[2]);
 
     fpin = fopen(argv[1], "rb");
-    fpout = fopen(argv[2], "wb");
-    char ch;
 
-    while ((ch = fgetc(fpin)) != EOF) {
-        fputc(ch, fpout);
-    }
+    fseek(fpin, OFFSET, SEEK_END);
 
-    fclose(fpout);
+    long file_size = ftell(fpin);
+
     fclose(fpin);
 
+    printf("[INFO] %s is %ld bytes\n", argv[1], file_size);
     printf("[INFO] completed\n");
     exit(0);
 }

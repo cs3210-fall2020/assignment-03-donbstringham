@@ -29,7 +29,7 @@ Write a program that uses`getc` and `putc` to copy the input file to the output 
 
 ## Exercise 03 (15 points)
 
-Write a program that uses `lseek` to copy the contents of one file into another file at starting at position 100.
+Write a program that uses `fseek` to copy the contents of one file into another file at starting at position 100.
 
 ## Exercise 04 (15 points)
 

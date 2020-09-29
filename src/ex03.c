@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define OFFSET 100
+
 int main(int argc, char **argv) {
     if (argc != 3) {
         printf("[ERROR] insufficient arguments\n");
@@ -17,6 +19,8 @@ int main(int argc, char **argv) {
     fpin = fopen(argv[1], "rb");
     fpout = fopen(argv[2], "wb");
     char ch;
+
+    fseek(fpin, OFFSET, SEEK_SET);
 
     while ((ch = fgetc(fpin)) != EOF) {
         fputc(ch, fpout);

@@ -42,6 +42,3 @@ int main(int argc, char **argv) {
     printf("[INFO] completed\n");
     exit(0);
 }
-
-
-
