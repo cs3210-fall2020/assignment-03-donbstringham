@@ -41,6 +41,12 @@ run.ex05:
 run.ex05.2:
 	$(BINDIR)/ex05 -l
 
+bld.ex06.cat: src/ex06_cat.c
+	$(CC) src/ex06_cat.c -o $(BINDIR)/ex06_cat
+
+run.ex06.cat:
+	$(BINDIR)/ex06_cat ./data/in.txt
+
 clean:
 	rm -fr *.txt
 	rm -fr $(BINDIR)
