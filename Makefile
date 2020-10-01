@@ -36,7 +36,10 @@ bld.ex05: src/ex05.c
 	$(CC) src/ex05.c -o $(BINDIR)/ex05
 
 run.ex05:
-	$(BINDIR)/ex05 $(ARGS)
+	$(BINDIR)/ex05
+
+run.ex05.2:
+	$(BINDIR)/ex05 -l
 
 clean:
 	rm -fr *.txt
