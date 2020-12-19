@@ -1,29 +1,53 @@
 # Author: Don Stringham <donstringham@weber.edu>
-.DEFAULT_GOAL=clean
+UNAME_S := $(shell uname -s)
 
-
-# VARIABLES
-CC=gcc
-BUILD_TIME ?= $(shell date +%FT%T%z)
-SDIR=./src
-ODIR=$(SDIR)
-BDIR=./bin
+CC := gcc
+BINDIR := bin
+SRCDIR := src
+OBJDIR := $(SRCDIR)
+SRCS := $(shell find $(SRCDIR) -name *.c)
 
 # TARGETS
-all:
-	-mkdir -p $(BDIR)
-
-bld.ex01: $(SDIR)/ex01.o
-	$(CC) $(CFLAGS) -o $(BDIR)
+bld.ex01: src/ex01.c
+	$(CC) src/ex01.c -o $(BINDIR)/ex01
 
 run.ex01:
-	@echo Running exercise 01...
+	$(BINDIR)/ex01 $(ARGS)
 
-release:
-	git tag v$(V)
-	@read -p "Press enter to confirm and push to origin ..." && git push origin v$(V)
+bld.ex02: src/ex02.c
+	$(CC) src/ex02.c -o $(BINDIR)/ex02
 
-.PHONY: clean
+run.ex02:
+	$(BINDIR)/ex02 $(ARGS)
+
+bld.ex03: src/ex03.c
+	$(CC) src/ex03.c -o $(BINDIR)/ex03
+
+run.ex03:
+	$(BINDIR)/ex03 $(ARGS)
+
+bld.ex04: src/ex04.c
+	$(CC) src/ex04.c -o $(BINDIR)/ex04
+
+run.ex04:
+	$(BINDIR)/ex04 $(ARGS)
+
+bld.ex05: src/ex05.c
+	$(CC) src/ex05.c -o $(BINDIR)/ex05
+
+run.ex05:
+	$(BINDIR)/ex05
+
+run.ex05.2:
+	$(BINDIR)/ex05 -l
+
+bld.ex06.cat: src/ex06_cat.c
+	$(CC) src/ex06_cat.c -o $(BINDIR)/ex06_cat
+
+run.ex06.cat:
+	$(BINDIR)/ex06_cat ./data/in.txt
+
 clean:
-	-rm -r $(BDIR)
-	-rm -f $(ODIR)/*.o
+	rm -fr *.txt
+	rm -fr $(BINDIR)
+	mkdir $(BINDIR)
